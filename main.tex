@@ -469,7 +469,7 @@ Individuals' attitude towards a convention may be shaped by:
         
     \foreach \x in {0,...,59} {
         \newcommand\frameno{\x+1}
-        \only<\frameno>{
+        \only<\x>{
             \centering
             \begin{figure}
                 \centering
@@ -525,7 +525,7 @@ Individuals' attitude towards a convention may be shaped by:
 
     \foreach \x in {0,...,4} {
         \newcommand\frameno{\x+1}
-        \only<\frameno>{
+        \only<\x>{
             \centering
             \begin{figure}
                 \centering
@@ -599,13 +599,13 @@ Individuals' attitude towards a convention may be shaped by:
     \end{itemize}
     \foreach \x in {0,...,4} {
         \newcommand\frameno{\x+3}
-        % \only<\frameno>{
-        %     \centering
-        %     \begin{figure}
-        %         \centering
-        %         \includegraphics[width=0.6\linewidth]{amortized/frame_\x.pdf}
-        %     \end{figure}
-        % }
+        \only<\frameno>{
+            \centering
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.6\linewidth]{amortized/frame_\x.pdf}
+            \end{figure}
+        }
     }
 \end{frame}
 
