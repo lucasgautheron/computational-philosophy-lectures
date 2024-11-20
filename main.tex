@@ -597,15 +597,40 @@ Individuals' attitude towards a convention may be shaped by:
             \item<2-> Use amortized inference with neural networks $\Rightarrow$ train a neuralnet to predict the probability of each model $M_i$ given one or more observed outcomes. The neuralnet is trained with many simulated training samples $(M_s, O_s)$.\citep{radev2021amortized}
         \end{itemize}
     \end{itemize}
-    \foreach \x in {0,...,4} {
-        \newcommand\frameno{\x+3}
-        \only<\frameno>{
+    \only<3>{
+        \centering
+        \begin{figure}
             \centering
-            \begin{figure}
-                \centering
-                \includegraphics[width=0.6\linewidth]{amortized/frame_\x.pdf}
-            \end{figure}
-        }
+            \includegraphics[width=0.6\linewidth]{amortized/frame_0.pdf}
+        \end{figure}
+    }
+    \only<4>{
+        \centering
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\linewidth]{amortized/frame_1.pdf}
+        \end{figure}
+    }
+    \only<5>{
+        \centering
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\linewidth]{amortized/frame_2.pdf}
+        \end{figure}
+    }
+    \only<6>{
+        \centering
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\linewidth]{amortized/frame_3.pdf}
+        \end{figure}
+    }
+    \only<7>{
+        \centering
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\linewidth]{amortized/frame_4.pdf}
+        \end{figure}
     }
 \end{frame}
 
