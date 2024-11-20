@@ -589,51 +589,6 @@ Individuals' attitude towards a convention may be shaped by:
     \end{enumerate}
 \end{frame}
 
-\begin{frame}{Amortized simulation-based inference}
-    \begin{itemize}
-        \item Even with summary statistics, simulation-based inference is difficult because no simulated sample will \textit{exactly} match the observed data.
-        \item Solution:
-        \begin{itemize}
-            \item<2-> Use amortized inference with neural networks $\Rightarrow$ train a neuralnet to predict the probability of each model $M_i$ given one or more observed outcomes. The neuralnet is trained with many simulated training samples $(M_s, O_s)$.\citep{radev2021amortized}
-        \end{itemize}
-    \end{itemize}
-    \only<3>{
-        \centering
-        \begin{figure}
-            \centering
-            \includegraphics[width=0.6\linewidth]{amortized/frame_0.pdf}
-        \end{figure}
-    }
-    \only<4>{
-        \centering
-        \begin{figure}
-            \centering
-            \includegraphics[width=0.6\linewidth]{amortized/frame_1.pdf}
-        \end{figure}
-    }
-    \only<5>{
-        \centering
-        \begin{figure}
-            \centering
-            \includegraphics[width=0.6\linewidth]{amortized/frame_2.pdf}
-        \end{figure}
-    }
-    \only<6>{
-        \centering
-        \begin{figure}
-            \centering
-            \includegraphics[width=0.6\linewidth]{amortized/frame_3.pdf}
-        \end{figure}
-    }
-    \only<7>{
-        \centering
-        \begin{figure}
-            \centering
-            \includegraphics[width=0.6\linewidth]{amortized/frame_4.pdf}
-        \end{figure}
-    }
-\end{frame}
-
 \begin{frame}{Local versus global mechanisms of coordination}
 \begin{figure}
     \centering
@@ -818,6 +773,51 @@ $B(\mathrm{astro})$ & -0.6 & [-0.74, \ -0.47] & -0.59 & [-0.73, \ -0.46] \\
 \begin{frame}{Thank you!}
     \nocite{radev2021amortized}
     \printbibliography[heading=none]
+\end{frame}
+
+\begin{frame}{Amortized simulation-based inference}
+    \begin{itemize}
+        \item Even with summary statistics, simulation-based inference is difficult because no simulated sample will \textit{exactly} match the observed data.
+        \item Solution:
+        \begin{itemize}
+            \item<2-> Use amortized inference with neural networks $\Rightarrow$ train a neuralnet to predict the probability of each model $M_i$ given one or more observed outcomes. The neuralnet is trained with many simulated training samples $(M_s, O_s)$ \citep{radev2021amortized}
+        \end{itemize}
+    \end{itemize}
+    \only<3>{
+        \centering
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\linewidth]{amortized/frame_0.pdf}
+        \end{figure}
+    }
+    \only<4>{
+        \centering
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\linewidth]{amortized/frame_1.pdf}
+        \end{figure}
+    }
+    \only<5>{
+        \centering
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\linewidth]{amortized/frame_2.pdf}
+        \end{figure}
+    }
+    \only<6>{
+        \centering
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\linewidth]{amortized/frame_3.pdf}
+        \end{figure}
+    }
+    \only<7>{
+        \centering
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\linewidth]{amortized/frame_4.pdf}
+        \end{figure}
+    }
 \end{frame}
 
 \end{document}
