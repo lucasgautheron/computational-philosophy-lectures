@@ -56,7 +56,8 @@
 \usetikzlibrary{arrows}
 \RequirePackage{fix-cm}
 \usepackage{tikz-cd}
-
+\usepackage{tikzpeople}
+\usepackage{fontawesome5}
 
 \usepackage{animate}
 
@@ -96,7 +97,7 @@
 %------------------------------------------------------------
 %This block of code defines the information to appear in the
 %Title page
-\title[Conventions] %optional
+\title[Inverse Problems for Philosophers] %optional
 {
 Inverse Problems for Philosophers
 }
@@ -204,9 +205,9 @@ Inverse Problems for Philosophers
     \begin{itemize}
         \item<4-> Inverse problems are \textbf{hard}:
         \begin{enumerate}
-            \item<5-> Identifiability problems (underdetermination): many causes could have produced a given outcome
-            \item<6-> Misspecification problems: inverse problems always require some assumptions, which may be incorrect.
-            \item<7-> Computational problems: solving these problems often involve intractable computations.
+            \item<5-> \textbf{Identifiability problems} (underdetermination): many causes could have produced a given outcome
+            \item<6-> \textbf{Misspecification problems}: inverse problems may produce misleading results when modeling assumptions are ``too wrong''.
+            \item<7-> \textbf{Computational problems}: solving inverse problems often involves intractable computations and requires approximation schemes.
         \end{enumerate}
     \end{itemize}
 \end{frame}
@@ -251,12 +252,33 @@ Inverse Problems for Philosophers
     \begin{itemize}
         \item<1-> \textbf{Coordination problems} arise when individuals would benefit from acting in a mutually compatible way, but it is somehow non-trivial to do so \citep{Lewis2002}.
         \begin{figure}
-            \begin{tikzpicture}
-                \node[inner sep=0pt,visible on=<1->] (phone) at (0,0)
-        {\includegraphics[width=0.4\textwidth]{presentations/phone.jpg}};
-                \node[color=red,visible on=<2->] (test) at (0, -0.65) {\HUGE{$\bm{\times}$}};
+        \begin{tikzpicture}
+    % Alice
+    \node[alice, minimum size=0.8cm] (alice) at (0,0) {};
+    % \node at (0,-1.5) {Alice};
+
+    % Bob
+    \node[bob, minimum size=0.8cm] (bob) at (4,0) {};
+    % \node at (4,-1.5) {Bob};
+
+    % Phone in the middle
+    \node at (2,0) {\faPhone[regular,scale=1.5]};
+
+    % Curly line between Alice and Bob
+    \draw[thick, decorate, decoration={snake, amplitude=1mm, segment length=4mm}] 
+        (alice.east) -- (1.5,0);
+    \draw[thick, decorate, decoration={snake, amplitude=1mm, segment length=4mm}] 
+        (2.5,0) -- (bob.west);
+    \node[red,visible on=<2->] at (2,0) {\Huge $\times$}; % Red cross in the middle
+
+\end{tikzpicture}
+
+        %     \begin{tikzpicture}
+        %         \node[inner sep=0pt,visible on=<1->] (phone) at (0,0)
+        % {\includegraphics[width=0.4\textwidth]{presentations/phone.jpg}};
+        %         \node[color=red,visible on=<2->] (test) at (0, -0.65) {\HUGE{$\bm{\times}$}};
         
-            \end{tikzpicture}
+        %     \end{tikzpicture}
         \end{figure}
 
         \uncover<3->{
@@ -264,7 +286,7 @@ Inverse Problems for Philosophers
 \resizebox{0.5\columnwidth}{!}{%
 \begin{tabular}{l|c|c|}
 \cline{2-3}
-                                                & \textbf{\begin{tabular}[c]{@{}c@{}}Carol\\ calls back\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Carol\\ awaits\end{tabular}} \\ \hline
+                                                & \textbf{\begin{tabular}[c]{@{}c@{}}Bob\\ calls back\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Bob\\ awaits\end{tabular}} \\ \hline
 \multicolumn{1}{|l|}{\textbf{Alice calls back}} & 0,0                                                                 & 1,1                                                            \\ \hline
 \multicolumn{1}{|l|}{\textbf{Alice awaits}}      & 1,1                                                                 & 0,0                                                            \\ \hline
 \end{tabular}%
@@ -275,17 +297,19 @@ Inverse Problems for Philosophers
         \item<4-> \textbf{``Conventions''} are cultural tools for solving coordination problems by providing individuals with expectations about how others will behave. These expectations suggest particular courses of action.
         \begin{itemize}
             \item<5-> Example: left-hand or right-hand traffic.
-            \item<6-> Language!
+            \item<6-> Language! ``The syllable `big' could have meant `small' for all we care, and the red light could have meant `go''' (Quine, foreword to \citealt{Lewis2002})
         \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Conventions in the literature}
 \begin{itemize}
-    \item Can conventions emerge spontaneously from dyadic interactions alone? \citep{Centola2015,hawkins2019emergence}
-    \item How does the topology of social networks influence the propagation of conventions via dyadic interactions? \citep{pujol2005role,delgado2002emergence}
-    \item How to measure the degree of conventionality of a convention? \citep{OConnor2020}
-    \item What is the role of leadership in addressing coordination problems? \citep{calvert1992leadership}
+    \item<1-> Starting point: conventions as solutions to coordination games \citep{Lewis2002}
+    \begin{enumerate}
+        \item<2-> Can conventions emerge spontaneously from dyadic interactions alone? \citep{Centola2015,hawkins2019emergence}
+        \item<3-> How does the topology of social networks influence the propagation of conventions via dyadic interactions? \citep{pujol2005role,delgado2002emergence}
+        \item<4-> How to measure the degree of conventionality of a convention? \citep{OConnor2020}
+        \item<5-> What is the role of leadership in addressing coordination problems? \citep{calvert1992leadership}    \end{enumerate}
 \end{itemize}
 % \begin{itemize}
 %     \item Theoretical papers ([evolutionary] game theory, agent-based modeling, e.g. on complex networks\dots)
@@ -296,8 +320,8 @@ Inverse Problems for Philosophers
 
 \begin{frame}{A case-study from high-energy physics}
     \begin{itemize}
-        \item<1-> Relativity: unified description of spacetime.
-        \item<2-> The metric tensor ($g_{\mu\nu})$ captures the metric properties of spacetime; e.g. the pseudo- distance between events $(t_1,x_1,y_1,z_1)$ and $(t_2,x_2,y_2,z_2)$. \textbf{Two possible descriptions}:
+        \item<1-> Relativistic theories: unified description of spacetime.
+        \item<2-> The metric tensor ($g_{\mu\nu})$ captures the metric properties of spacetime; e.g. the pseudo- distance between events $(t_1,x_1,y_1,z_1)$ and $(t_2,x_2,y_2,z_2)$. \textbf{Two possible descriptions} (metric signatures):
     \end{itemize}
     
     \vspace{1em}
@@ -356,7 +380,7 @@ Inverse Problems for Philosophers
     \begin{itemize}
         \item<1-> Let's use inverse problems to infer:
         \begin{enumerate}
-            \item<2-> How do scientists decide to choose one convention or the other in a paper?
+            \item<2-> How do scientists decide which convention to use in a paper?
             \item<3-> How do they resolve conflicting preferences in collaborations?
             \item<4-> What factors shape scientists' preferences?
         \end{enumerate}
@@ -387,12 +411,12 @@ Inverse Problems for Philosophers
 Individuals' attitude towards a convention may be shaped by:
 
     \begin{enumerate}
-        \item<2-> \textbf{Coordination costs} (the cost of disagreeing with peers).
-        \item<3-> \textbf{Inconsistency costs} (the cost of switching between different conventions).
-        \item<4-> \textbf{Maladaptation costs} (the cost of using a convention that is a poor fit/suboptimal in a given context). Degrees of conventionality \citep{OConnor2020}
+        \item<2-> \textbf{Social consistency} (driven by coordination costs).
+        \item<3-> \textbf{Sequential consistency} (driven by switching costs).
+        \item<4-> \textbf{Contextual consistency} (the ``maladaptation'' cost of using a convention that is a poor fit/suboptimal in a given context) $\Rightarrow$ degrees of conventionality \citep{OConnor2020}
     \end{enumerate}
 
-    \uncover<5->{$\Rightarrow$ What are their implications for the diffusion of conventions? Are these involved in the context of the metric signature? }
+    \uncover<5->{$\Rightarrow$ Are these involved in the context of the metric signature? }
 \end{frame}
 
 \begin{frame}{Inconsistency and maladaptation costs}
@@ -409,16 +433,24 @@ Individuals' attitude towards a convention may be shaped by:
 
 \begin{frame}{Inconsistency and maladaptation costs}
 \vspace{-1em}
+\def\alice{\tikz[baseline=-.2ex]{
+\node[alice] at (0,0) {};}
+}
+
+\begin{itemize}
+    \item \alice publishes $d$ in category $c_d \in \{\text{phenomenology, theory, \dots}\}$. What is the probability that they use the mostly plus convention?
+\end{itemize}
+
 \begin{equation}
-    \small P(\sigma_d=+1|a_d=\{i\},c_d) = \mathrm{logit}^{-1}(\textcolor{red}{\underbrace{\theta_i}_{\substack{\text{Preference of}\\\text{author } i}}}+\textcolor{blue}{\underbrace{b_{c_d}}_{\substack{\text{Effect of}\\\text{research area } c_d}}})% = \frac{e^{+\frac{1}{2}(\textcolor{red}{\theta_i}+\textcolor{blue}{b_c})}}{e^{+\frac{1}{2}(\textcolor{red}{\theta_i}+\textcolor{blue}{b_c})}+e^{-\frac{1}{2}(\textcolor{red}{\theta_i}+\textcolor{blue}{b_c})}}
+    \small P(\sigma_d=+1|a_d=\alice,c_d) = f(\textcolor{red}{\underbrace{\theta(\alice)}_{\substack{\text{Author's}\\\text{preference}}}}+\textcolor{blue}{\underbrace{b(c_d)}_{\substack{\text{Effect of}\\\text{research area } c_d}}})% = \frac{e^{+\frac{1}{2}(\textcolor{red}{\theta_i}+\textcolor{blue}{b_c})}}{e^{+\frac{1}{2}(\textcolor{red}{\theta_i}+\textcolor{blue}{b_c})}+e^{-\frac{1}{2}(\textcolor{red}{\theta_i}+\textcolor{blue}{b_c})}}
 \end{equation}
 
 \begin{itemize}
-    \item ``Item-response model'': recover invisible traits/factors that may account for observed behaviors.
-    \item $\theta_i$ is a latent (unobserved) parameter measuring the preference of each author. $\theta_i>0$ indicates a preference for the mostly plus signature
-    \item $b_c$ is the unobserved bias associated with research area $c$
-    \item If $|\theta_i|\gg |b_c|$ then individual preferences dominate the need to adapt to a given research area
-    \item \textbf{Given physicists' choices in their solo-authored papers, we can infer back $\theta_i$ and $b_c$ using Bayesian inference}.
+    \item<2-> ``Item-response model'': recover invisible traits/factors that may account for observed behaviors.
+    \item<3-> $\theta(i)$ is a latent (unobserved) parameter measuring the preference of each author $i$. $\theta(i)>0$ indicates a preference for the mostly plus signature
+    \item<4-> $b_c$ is the unobserved bias associated with research area $c$
+    \item<5-> If $|\theta|\gg |b|$ then individual preferences dominate the need to adapt to a given research area
+    \item<6-> \textbf{Given physicists' choices in their solo-authored papers, we can infer back $\theta$ and $b$ using Bayesian inference}.
 \end{itemize}
 \end{frame}
 
@@ -428,7 +460,7 @@ Individuals' attitude towards a convention may be shaped by:
 \centering
 \includegraphics[width=0.5\linewidth]{consistency_vs_task_barplot.pdf}
     \vspace{-0.75em}
-    \caption{Consistency matters most, but adaptation to the context can occur.}
+    \caption{Consistency matters the most, but adaptation to the context can occur.}
 \end{figure}
 \end{frame}
 
@@ -447,20 +479,20 @@ Individuals' attitude towards a convention may be shaped by:
 
 \begin{frame}{Inferring preference-aggregation mechanisms in conflicts}
     \begin{itemize}
-        \item Focusing on co-authored papers for which:
+        \item<1-> Focusing on co-authored papers for which:
         \begin{enumerate}
-            \item[(i)] The metric signature $S_d\in\{-1,+1\}$ of the paper is observed
-            \item[(ii)] The preference of each author $(\sigma_1, \dots, \sigma_n)\in \{\pm 1\}^n$ is known independently from at least one solo-authored publication
+            \item<2->[(i)] The metric signature $S_d\in\{-1,+1\}$ of the paper is observed
+            \item<3->[(ii)] The preference of each author $(\sigma_1, \dots, \sigma_n)\in \{\pm 1\}^n$ is known independently from at least one solo-authored publication
             % \item[(iii)] At least two co-authors have conflicting preferences ($\exists i,j | \sigma_i \neq \sigma_j$).
         \end{enumerate}
-        \item We can assume different preference aggregation strategies ($A_k$):
+        \item<4-> We can assume different preference aggregation strategies ($A_k$):
         \begin{itemize}
-            \item Dictatorial strategies (the first author, the last author, or another author decides)
-            \item Majoritarian strategy (the majority preference prevails)
-            \item Conventional strategy (the signature most common in the target research area prevails)
-            \item Random/coin-flip (both individual preferences and context are ignored)
+            \item<5-> Dictatorial strategies (the first author, the last author, or another author decides)
+            \item<6-> Majoritarian strategy (the majority preference prevails)
+            \item<7-> Conventional strategy (the signature most common in the target research area prevails)
+            \item<8-> Random/coin-flip (both individual preferences and context are ignored)
         \end{itemize}
-        \item We can estimate the prevalence of each strategy ($\pi_k$) given that they predict different outcomes (different probabilities  $P(S_d|\sigma_1,\dots,\sigma_n,A_k)$)
+        \item<9-> We can estimate the prevalence of each strategy ($\pi_k$) given that they predict different outcomes (different probabilities  $P(S_d|\sigma_1,\dots,\sigma_n,A_k)$)
     \end{itemize}
 \end{frame}
 
@@ -515,7 +547,7 @@ Individuals' attitude towards a convention may be shaped by:
 \end{itemize}
 \end{frame}
 
-\begin{frame}{The strategic agent model}
+\begin{frame}{Example: the strategic agent model}
     The model has multiple unknown parameters:
     \begin{itemize}
         \item $c_s$: the cost of switching from one convention to another
@@ -540,29 +572,30 @@ Individuals' attitude towards a convention may be shaped by:
 \vspace{-0.5em}
 
     \begin{equation}
-        \textcolor{red}{P(M_1|O)} = \dfrac{\textcolor{blue}{\overbrace{P(O|M_1)}^{\uncover<4->{\substack{\text{Unknown}\\\text{in ABMs!}}}}}P(M_1)}{P(O)}
+        \textcolor{red}{P(M_1|O)} = \dfrac{\textcolor{blue}{\overbrace{P(O|M_1)}^{\uncover<2->{\substack{\text{Unknown}\\\text{in ABMs!}}}}}P(M_1)}{P(O)}
     \end{equation}
 
-    \uncover<2->{
-    Assuming that at least one model is correct:
-    \begin{equation}
-        P(O) = \displaystyle\sum_{i=1}^3 \textcolor{blue}{P(O|M_i)} P(M_i)
-    \end{equation}
-    }
-    \vspace{-0.5em}
+    % \uncover<2->{
+    % Assuming that at least one model is correct:
+    % \begin{equation}
+    %     P(O) = \displaystyle\sum_{i=1}^3 \textcolor{blue}{P(O|M_i)} P(M_i)
+    % \end{equation}
+    % }
+
     \uncover<3->{
-    \begin{equation}
-        \textcolor{red}{P(M_1|O)} = \dfrac{\textcolor{blue}{P(O|M_1)}P(M_1)}{\displaystyle\sum_{i=1}^{3} \textcolor{blue}{P(O|M_i)}P(M_i)}\uncover<5->{= \lim_{N\to\infty} \dfrac{\sum_{s=1}^N \mathbbm{1}(O_s=O,M_s=1)}{\sum_{s=1}^N \mathbbm{1}(O_s=O)}} 
-    \end{equation}
-    }
-
-    \uncover<5->{
     Let us draw $N$ configurations $O_s$, each of them assuming a model $M_s\in\{1,2,3\}$. Then, $\textcolor{blue}{P(O|M_1)}$ is approximated by the fraction of draws from model $M_1$ that match the data:
 
     \vspace{-0.5em}
 
     \begin{equation}
         \textcolor{blue}{P(O|M_1)} = \lim_{N\to\infty} \dfrac{\sum_{s=1}^N \mathbbm{1}(O_s=O,M_s=1)}{\sum_{s=1}^N \mathbbm{1}(M_s=1)}
+    \end{equation}
+    }
+
+    \vspace{-0.5em}
+    \uncover<4->{
+    \begin{equation}
+        \textcolor{red}{P(M_1|O)} = \dfrac{\textcolor{blue}{P(O|M_1)}P(M_1)}{P(O)}\uncover<5->{= \lim_{N\to\infty} \dfrac{\sum_{s=1}^N \mathbbm{1}(O_s=O,M_s=1)}{\sum_{s=1}^N \mathbbm{1}(O_s=O)}} 
     \end{equation}
     }
 \end{frame}
@@ -587,6 +620,18 @@ Individuals' attitude towards a convention may be shaped by:
         \item Hand-picking interpretable summary statistics based on our own intuitions.
         \item Using sophisticated methods to learn statistically optimal (but potentially un-interpretable) summary statistics. Optimal summary statistics reduce our posterior uncertainty given a fixed amount of data.
     \end{enumerate}
+\end{frame}
+
+\begin{frame}{Simulation-based inference with summary statistics}
+    \foreach \x in {1,...,42} {
+        \only<\x>{
+            \centering
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.7\linewidth]{abc/frame_\x.pdf}
+            \end{figure}
+        }
+    }
 \end{frame}
 
 \begin{frame}{Local versus global mechanisms of coordination}
@@ -768,6 +813,13 @@ $B(\mathrm{astro})$ & -0.6 & [-0.74, \ -0.47] & -0.59 & [-0.73, \ -0.46] \\
         \centering
         \includegraphics[width=0.9\linewidth]{draws_compact.pdf}
     \end{figure}
+\end{frame}
+
+\begin{frame}{Challenges for model selection}
+    \begin{itemize}
+        \item<1-> Model misspecification: model comparison among highly incorrect models is challenging/meaningless
+        \item<2-> Priors on models' parameter matter. A model is disadvantaged if it only is a good fit to the data for improbable parameter values.
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Thank you!}
