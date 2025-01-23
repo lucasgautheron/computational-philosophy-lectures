@@ -87,8 +87,8 @@ Inverse Problems for Philosophers
 {
   %
   \inst{1}
-  Interdisciplinary Center for Science and Technology Studies, Wuppertal, Germany\\
-  \inst{2} Département d'Études Cognitives, École Normale Supérieure, Paris, France
+  Interdisciplinary Center for Science and Technology Studies, Wuppertal\\
+  \inst{2} Département d'Études Cognitives, École Normale Supérieure, Paris
 }
 
 \date[24/01/2025] % (optional)
@@ -104,6 +104,15 @@ Inverse Problems for Philosophers
 %------------------------------------------------------------
 %The next block of commands puts the table of contents at the 
 %beginning of each section and highlights the current section:
+
+\addtobeamertemplate{title page}{
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[above right,inner sep=0pt,opacity=0.333] at (current page.south west)
+    {
+      \includegraphics[width=\paperwidth]{snow.jpg}
+    };
+  \end{tikzpicture}
+}{}
 
 \AtBeginSection[]
 {
