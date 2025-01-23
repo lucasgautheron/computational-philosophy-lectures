@@ -40,11 +40,11 @@
 };
 \end{scope}
 
-\node[] (O) at (-1.25,-0.5) {$O_{\text{obs}}=$};
-\node[] (m) at (3.5,-0.5) {$m_{\text{obs}}=0.03$};
-\draw[->] (1.75,-0.5) -- (m);
+\node[] (O) at (-1.25,-0.25) {$O_{\text{obs}}=$};
+\node[] (m) at (3.5,-0.25) {$m_{\text{obs}}=0.03$};
+\draw[->] (1.75,-0.25) -- (m);
 
-\begin{scope}[shift={(0,-1.8)},visible on=<7>]
+\begin{scope}[shift={(0,-1.5)},visible on=<7>]
 \graph[spring layout={iterations=50},random seed=43,
        nodes={circle, draw, minimum size=1.5mm, inner sep=0mm, font=\small, as=},
        every node/.append style={label=}] {
@@ -113,8 +113,8 @@
   h -- s;
 };
 
-\node[] (Osim) at (-1.25,-0.5) {$O_{\text{sim}}=$};
-\node[] (msim) at (3.5,-0.5) {$m_{\text{sim}}=0.03$};
-\draw[->] (1.75,-0.5) -- (msim);
+\node[] (Osim) at (-1.25,-0.25) {$O_{\text{sim}}=$};
+\node[] (msim) at (3.5,-0.25) {$m_{\text{sim}}=0.03$};
+\draw[->] (1.75,-0.25) -- (msim);
 \end{scope}
 \end{tikzpicture}
