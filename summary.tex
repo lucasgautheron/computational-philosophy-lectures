@@ -1,7 +1,7 @@
-\begin{tikzpicture}[>=stealth, node distance=0.5cm]
+\begin{tikzpicture}[>=stealth, node distance=0.33cm]
 \begin{scope}
 \graph[spring layout={iterations=50},random seed=43,
-       nodes={circle, draw, minimum size=2mm, inner sep=0mm, font=\small, as=},
+       nodes={circle, draw, minimum size=1.5mm, inner sep=0mm, font=\small, as=},
        every node/.append style={label=}] {
 
   % Community A nodes and edges
@@ -44,9 +44,9 @@
 \node[] (m) at (3.5,-0.5) {$m_{\text{obs}}=0.03$};
 \draw[->] (1.75,-0.5) -- (m);
 
-\begin{scope}[shift={(0,-3.75)},visible on=<7>]
+\begin{scope}[shift={(0,-1.8)},visible on=<7>]
 \graph[spring layout={iterations=50},random seed=43,
-       nodes={circle, draw, minimum size=2mm, inner sep=0mm, font=\small, as=},
+       nodes={circle, draw, minimum size=1.5mm, inner sep=0mm, font=\small, as=},
        every node/.append style={label=}] {
 
   % Community A nodes and edges
@@ -80,7 +80,7 @@
 };
 
 \graph[spring layout={iterations=50},random seed=43,
-       nodes={circle, draw, minimum size=2mm, inner sep=0mm, font=\small, as=},
+       nodes={circle, draw, minimum size=1.5mm, inner sep=0mm, font=\small, as=},
        every node/.append style={label=}] {
 
   % Community A nodes and edges
