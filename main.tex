@@ -549,7 +549,7 @@ How scientists resolve conflicting preferences in collaborations?
 
         \vspace{1em}
         
-        $O=(\sigma_1,\dots,\sigma_n), \sigma \in \{\textcolor[HTML]{EE7993}{-1},\textcolor[HTML]{3FB17D}{+1}\}$
+        $O_{\text{obs}}=(\sigma_1,\dots,\sigma_n), \sigma \in \{\textcolor[HTML]{EE7993}{-1},\textcolor[HTML]{3FB17D}{+1}\}$
 
         \vspace{1em}
 
@@ -582,7 +582,7 @@ How scientists resolve conflicting preferences in collaborations?
 
     \vspace{0.5em}
 
-    The \textbf{outcome} $O$ is the joint value of each author's preference: $O=(\sigma_1,\dots,\sigma_n)$ where $\sigma_i = \pm 1$
+    The \textbf{outcome} $O_{\text{sim}}$ is the joint value of each author's preference: $O_{\text{sim}}=(\sigma_1,\dots,\sigma_n)$ where $\sigma_i = \pm 1$
 
     % \foreach \x in {0} {
     %     \newcommand\frameno{\x+1}
@@ -727,12 +727,12 @@ How scientists resolve conflicting preferences in collaborations?
     \end{tikzpicture}}$};
 
 \foreach \x/\y in {-1.5/1.2, -1.2/0.8, -0.8/-1.5, -1.3/-0.5, -0.7/0.5} {
-    \draw[fill=purple,draw=none,visible on=<2->] (\x,\y) circle (0.5mm);
+    \draw[fill=purple,draw=none,visible on=<3->] (\x,\y) circle (0.5mm);
 }
 
 % Add random nodes within M2 (in yellow)
 \foreach \x/\y in {0.5/1.2, 1.2/0.8, 0.8/1.5, 1.3/-0.5, 0.7/0.5} {
-    \draw[fill=yellow!20!orange,draw=none,visible on=<2->] (\x,\y) circle (0.5mm);
+    \draw[fill=yellow!20!orange,draw=none,visible on=<3->] (\x,\y) circle (0.5mm);
 }
 \end{tikzpicture}
 \end{frame}
