@@ -741,14 +741,15 @@ How scientists resolve conflicting preferences in collaborations?
     \begin{itemize}
         \item<1-> At least some simulations $O_s$ must match the observed outcome $O$, which means matching each of the 2\,277 authors' preferences at the same time!
         \item<2-> Virtually impossible ($95\%$ chance of predicting any individual preference $\sigma_i$ correctly $\Rightarrow$ $2\times 10^{-51}$ of getting all of them right at once)
-        \item<3-> This is because because the data has \textit{too many dimensions} $\Rightarrow$ \textbf{``curse of dimensionality''}
+        \item<3-> The data has \textit{too many dimensions} $\Rightarrow$ \textbf{``curse of dimensionality''}
         \item<4-> Solution: ``conditioning'' on \textbf{summary statistics} rather than the entire data.
         \item<5-> Summary statistics are \textbf{low-dimensional descriptions of the data} that capture essential features. e.g.:
         \begin{equation}
             m = \frac{1}{n}|\sum_{i=1}^n \sigma_i| \text{ (where } \sigma_i=\pm 1 \text{)}
         \end{equation}
     \end{itemize}
-    
+
+    \vspace{-0.5em}
     \centering\uncover<6->{\input{summary}}
 \end{frame}
 
