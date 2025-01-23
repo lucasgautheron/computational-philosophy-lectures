@@ -1,0 +1,120 @@
+\begin{tikzpicture}[>=stealth, node distance=0.75cm]
+\begin{scope}
+\graph[spring layout={iterations=50},random seed=43,
+       nodes={circle, draw, minimum size=2.5mm, inner sep=0mm, font=\small, as=},
+       every node/.append style={label=}] {
+
+  % Community A nodes and edges
+  a[fill=CommunityA] -- {b[fill=CommunityA], c[fill=CommunityA], d[fill=CommunityA]},
+  b -- {c, d, e[fill=CommunityA]},
+  c -- {f[fill=CommunityA], g[fill=CommunityA]},
+  d -- {h[fill=CommunityA]},
+  e -- {f, g, i[fill=CommunityA]},
+  f -- {j[fill=CommunityA]},
+  g -- {k[fill=CommunityA], l[fill=CommunityA]},
+  h -- {m[fill=CommunityA]},
+  i -- {n[fill=CommunityA]},
+  j -- {o[fill=CommunityA]},
+  k -- {p[fill=CommunityA]},
+  l -- {q[fill=CommunityA]},
+
+  % Community B nodes and edges
+  r[fill=CommunityB] -- {s[fill=CommunityB], t[fill=CommunityB], u[fill=CommunityB]},
+  s -- {v[fill=CommunityB]},
+  t -- {w[fill=CommunityB]},
+  u -- {x[fill=CommunityB]},
+  v -- {y[fill=CommunityB]},
+  w -- {z[fill=CommunityB]},
+  x -- {aa[fill=CommunityB]},
+  y -- {bb[fill=CommunityB]},
+  % z -- {cc[fill=CommunityB]},
+  % aa -- {dd[fill=CommunityB]},
+  % bb -- {ee[fill=CommunityB]},
+  % cc -- {ff[fill=CommunityB]},
+
+  % Inter-community connections
+  i -- r,
+  q -- v,
+  k -- x,
+  h -- s;
+};
+\end{scope}
+
+\node[] (O) at (-1.25,-0.5) {$O_{\text{obs}}=$};
+\node[] (m) at (3.5,-0.5) {$m_{\text{obs}}=0.03$};
+\draw[->] (1.75,-0.5) -- (m);
+
+\begin{scope}[shift={(0,-3.75)},visible on=<7>]
+\graph[spring layout={iterations=50},random seed=43,
+       nodes={circle, draw, minimum size=2.5mm, inner sep=0mm, font=\small, as=},
+       every node/.append style={label=}] {
+
+  % Community A nodes and edges
+  a[fill=CommunityA] -- {b[fill=CommunityA], c[fill=CommunityA], d[fill=CommunityA]},
+  b -- {c, d, e[fill=CommunityA]},
+  c -- {f[fill=CommunityA], g[fill=CommunityA]},
+  d -- {h[fill=CommunityA]},
+  e -- {f, g, i[fill=CommunityA]},
+  f -- {j[fill=CommunityA]},
+  g -- {k[fill=CommunityA], l[fill=CommunityA]},
+  h -- {m[fill=CommunityA]},
+  i -- {n[fill=CommunityA]},
+  j -- {o[fill=CommunityA]},
+  k -- {p[fill=CommunityA]},
+  l -- {q[fill=CommunityB]},
+
+  % Community B nodes and edges
+  r[fill=CommunityB] -- {s[fill=CommunityB], t[fill=CommunityB], u[fill=CommunityB]},
+  s -- {v[fill=CommunityB]},
+  t -- {w[fill=CommunityB]},
+  u -- {x[fill=CommunityB]},
+  v -- {y[fill=CommunityB]},
+  w -- {z[fill=CommunityB]},
+  x -- {aa[fill=CommunityB]},
+  y -- {bb[fill=CommunityA]},
+  % Inter-community connections
+  i -- r,
+  q -- v,
+  k -- x,
+  h -- s;
+};
+
+\graph[spring layout={iterations=50},random seed=43,
+       nodes={circle, draw, minimum size=2.5mm, inner sep=0mm, font=\small, as=},
+       every node/.append style={label=}] {
+
+  % Community A nodes and edges
+  a[fill=CommunityA] -- {b[fill=CommunityB], c[fill=CommunityA], d[fill=CommunityA]},
+  b -- {c, d, e[fill=CommunityA]},
+  c -- {f[fill=CommunityA], g[fill=CommunityA]},
+  d -- {h[fill=CommunityA]},
+  e -- {f, g, i[fill=CommunityA]},
+  f -- {j[fill=CommunityA]},
+  g -- {k[fill=CommunityB], l[fill=CommunityA]},
+  h -- {m[fill=CommunityA]},
+  i -- {n[fill=CommunityA]},
+  j -- {o[fill=CommunityA]},
+  k -- {p[fill=CommunityB]},
+  l -- {q[fill=CommunityB]},
+
+  % Community B nodes and edges
+  r[fill=CommunityB] -- {s[fill=CommunityB], t[fill=CommunityB], u[fill=CommunityA]},
+  s -- {v[fill=CommunityB]},
+  t -- {w[fill=CommunityB]},
+  u -- {x[fill=CommunityB]},
+  v -- {y[fill=CommunityA]},
+  w -- {z[fill=CommunityB]},
+  x -- {aa[fill=CommunityB]},
+  y -- {bb[fill=CommunityA]},
+  % Inter-community connections
+  i -- r,
+  q -- v,
+  k -- x,
+  h -- s;
+};
+
+\node[] (Osim) at (-1.25,-0.5) {$O_{\text{sim}}=$};
+\node[] (msim) at (3.5,-0.5) {$m_{\text{sim}}=0.03$};
+\draw[->] (1.75,-0.5) -- (msim);
+\end{scope}
+\end{tikzpicture}

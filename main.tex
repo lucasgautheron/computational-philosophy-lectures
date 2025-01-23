@@ -1,4 +1,5 @@
 \RequirePackage{fix-cm}
+\PassOptionsToPackage{svgnames}{xcolor}
 \documentclass[10pt]{beamer}
 \usepackage{adjustbox}
 
@@ -8,58 +9,33 @@
 \colorlet{beamer@blendedblue}{moderncvgreen}
 % \setbeamercovered{transparent}
 
-\newcommand\topics[1][]{\textbf{topics}}
-\newcommand\processes[1][]{\textbf{processes}}
-\newcommand\institutions[1][]{\textbf{institutions}}
-
-\newcommand\drift[1][]{\textbf{drift}}
-\newcommand\layering[1][]{\textbf{layering}}
-\newcommand\displacement[1][]{\textbf{displacement}}
-
 \makeatletter
 \newcommand\HUGE{\@setfontsize\Huge{50}{60}}
 \makeatother
 
-\usepackage{tikz}
-\usepackage{tikzscale}
-\usepackage{pgfplots}
-\usetikzlibrary{shapes,positioning,calc,arrows.meta,decorations.pathmorphing,patterns,decorations, decorations.markings,arrows, shapes.geometric,fit,patterns.meta}
-\usetikzlibrary{overlay-beamer-styles}
-\usepackage{pgfplots}
-\pgfplotsset{width=7cm,compat=1.16}
-\usepgfplotslibrary{ternary}
-\makeatletter
-\pgfdeclaredecoration{penciline}{initial}{
-    \state{initial}[width=+\pgfdecoratedinputsegmentremainingdistance,auto corner on length=1mm,]{
-        \pgfpathcurveto%
-        {% From
-            \pgfqpoint{\pgfdecoratedinputsegmentremainingdistance}
-                            {\pgfdecorationsegmentamplitude}
-        }
-        {%  Control 1
-        \pgfmathrand
-        \pgfpointadd{\pgfqpoint{\pgfdecoratedinputsegmentremainingdistance}{0pt}}
-                        {\pgfqpoint{-\pgfdecorationsegmentaspect\pgfdecoratedinputsegmentremainingdistance}%
-                                        {\pgfmathresult\pgfdecorationsegmentamplitude}
-                        }
-        }
-        {%TO 
-        \pgfpointadd{\pgfpointdecoratedinputsegmentlast}{\pgfpoint{1pt}{1pt}}
-        }
-    }
-    \state{final}{}
-}
-\makeatother
-\newcommand*{\coloremph}[2]{%
-  \tikz[baseline=(X.base)] \node[rectangle, fill=#2, rounded corners, inner sep=0.3mm] (X) {#1};%
-}
-\usetikzlibrary{arrows}
-\RequirePackage{fix-cm}
-\usepackage{tikz-cd}
 \usepackage{tikzpeople}
 \usepackage{fontawesome5}
-
 \usepackage{animate}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,positioning,calc,arrows.meta,decorations.pathmorphing,patterns,decorations, decorations.markings,arrows, shapes.geometric,fit,patterns.meta,3d,decorations.pathreplacing,arrows.meta,graphs,graphdrawing}
+\usegdlibrary{force}
+\usetikzlibrary{pgfplots.groupplots}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat = newest}
+\usetikzlibrary{overlay-beamer-styles}
+% \pgfplotsset{width=7cm,compat=1.16}
+
+\definecolor{DarkPurple}{HTML}{9467BD}
+\definecolor{DarkOrange}{HTML}{FF8C00}
+\definecolor{Kaki}{HTML}{BCBD22}
+\definecolor{CommunityA}{HTML}{EE7993} % Pinkish-red
+\definecolor{CommunityB}{HTML}{3FB17D} % Green
+
+% \usetikzlibrary{arrows}
+% \RequirePackage{fix-cm}
+% \usepackage{tikz-cd}
 
 \usepackage{tabularx}
 \usepackage{multirow}
@@ -171,18 +147,25 @@ Inverse Problems for Philosophers
 \end{frame}
 
 \begin{frame}{Why should philosophers care about data?}
+Reasons are:
     \begin{itemize}
-        \item<1-> Verify that models capture what is actually going on in the situations we are interested in.
-        \item<2-> Robustness (insensitivity to model assumptions/parameters) is a fallible validation procedure: what if the outcome really is contingent on certain circumstances (the values of underlying parameters, the topology of some relevant network, etc.)
-        \item<3-> Insights from models without connection to data may not be translatable into interventions/policies.
-        \item<4-> Unvalidated models should maybe not provide guidance for policy-making.
+        \item<1-> \textbf{Intellectual}: assess whether models capture what is actually going on in situations of interest / use data as a source of inspiration
+        \item<2-> \textbf{Methodological}: Non-empirical validation is fallible. Example: ``robustness'' (insensitivity to model assumptions/parameters) $\Rightarrow$ what if the outcome really is contingent on certain circumstances (the values of underlying parameters, the topology of some relevant network, etc.)
+        \item<3-> \textbf{Practical}: normative insights from models without connection to data may not be translatable into interventions/policies (abstract parameters in a computational model do not immediately connect to actionable parameters!)
+        % \item<4-> \textbf{Ethical}: un-validated models should maybe not provide guidance for policy-making.
     \end{itemize}
-
-    \vspace{1em}
-    \uncover<5->{
-        $\Rightarrow$ inverse problems are a promising candidate for bridging the formal/empirical gap.
-    }
 \end{frame}
+
+% \begin{frame}{Empirical agent-based models}
+
+%     Micro-level observations: missing
+%     Macro observations
+
+%     \vspace{1em}
+%     \uncover<2->{
+%         $\Rightarrow$ \textbf{Inverse problems} are a promising candidate for bridging the formal/empirical gap.
+%     }
+% \end{frame}
 
 \section{Inverse problems for philosophers and agent-based modelers}
 
@@ -192,6 +175,7 @@ Inverse Problems for Philosophers
         \item<2-> In the context of Agent-Based Modeling:
     \end{itemize}
 
+    \uncover<2->{
     \begin{figure}
         \centering
         \begin{tikzpicture}
@@ -200,7 +184,7 @@ Inverse Problems for Philosophers
         \draw[<-,visible on=<3->] (0, -0.25) -- (4, -0.25) node[midway, below] {``\textcolor{red}{Inverse problem}''};
         \node[align=center] at (+6,0) {Outcome of\\agents' behavior};
         \end{tikzpicture}
-    \end{figure}
+    \end{figure}}
 
     \begin{itemize}
         \item<4-> Inverse problems are \textbf{hard}:
@@ -304,12 +288,15 @@ Inverse Problems for Philosophers
 
 \begin{frame}{Conventions in the literature}
 \begin{itemize}
-    \item<1-> Starting point: conventions as solutions to coordination games \citep{Lewis2002}
+    \item<1-> Generally based on Lewis: conventions as solutions to coordination games \citep{Lewis2002}
     \begin{enumerate}
         \item<2-> Can conventions emerge spontaneously from dyadic interactions alone? \citep{Centola2015,hawkins2019emergence}
         \item<3-> How does the topology of social networks influence the propagation of conventions via dyadic interactions? \citep{pujol2005role,delgado2002emergence}
         \item<4-> How to measure the degree of conventionality of a convention? \citep{OConnor2020}
-        \item<5-> What is the role of leadership in addressing coordination problems? \citep{calvert1992leadership}    \end{enumerate}
+        % \item<5-> What is the role of leadership in addressing coordination problems? \citep{calvert1992leadership}
+    \end{enumerate}
+
+    \uncover<5->{Most often: idealized formal models or controlled experiments. Few studies in naturalistic settings!}
 \end{itemize}
 % \begin{itemize}
 %     \item Theoretical papers ([evolutionary] game theory, agent-based modeling, e.g. on complex networks\dots)
@@ -410,20 +397,80 @@ Inverse Problems for Philosophers
 \begin{frame}{How do physicists choose which convention to use in their own papers?}
 Individuals' attitude towards a convention may be shaped by:
 
-    \begin{enumerate}
-        \item<2-> \textbf{Social consistency} (driven by coordination costs).
-        \item<3-> \textbf{Sequential consistency} (driven by switching costs).
-        \item<4-> \textbf{Contextual consistency} (the ``maladaptation'' cost of using a convention that is a poor fit/suboptimal in a given context) $\Rightarrow$ degrees of conventionality \citep{OConnor2020}
-    \end{enumerate}
+    % \begin{enumerate}
+    %     \item<2-> \textbf{Social consistency} (driven by coordination costs).
+    %     \item<3-> \textbf{Sequential consistency} (driven by switching costs).
+    %     \item<4-> \textbf{Contextual consistency} (the ``maladaptation'' cost of using a convention that is a poor fit/suboptimal in a given context) $\Rightarrow$ degrees of conventionality \citep{OConnor2020}
+    % \end{enumerate}
+
+    \begin{figure}
+        \centering
+        \resizebox{0.95\textwidth}{!}{\input{tradeoffs}}
+    \end{figure}
 
     \uncover<5->{$\Rightarrow$ Are these involved in the context of the metric signature? }
 \end{frame}
 
-\begin{frame}{Inconsistency and maladaptation costs}
+\begin{frame}{Sequential and contextual consistency}
+\vspace{-1em}
+\def\alice{\tikz[baseline=-.2ex]{
+\node[alice] at (0,0) {};}
+}
+
 \begin{itemize}
-    \item<1-> Is physicists' attitude towards the convention dictated by consistency or adaptation (fitness) to their research?
+    \item \alice publishes $d$ in category $c_d \in \{\text{phenomenology, theory, \dots}\}$. What determines which convention she uses? Our assumption:
 \end{itemize}
 
+\begin{columns}
+    \begin{column}{0.67\textwidth}
+    \begin{equation*}
+    \small P(\sigma_d=+1|a_d=\alice,c_d) = f(\textcolor{DarkPurple}{\underbrace{\bm{\theta}(\alice)}_{\substack{\text{Author's}\\\text{preference}}}}+\textcolor{Kaki}{\underbrace{b(c_d)}_{\substack{\text{Effect of}\\\text{research area } c_d}}})% = \frac{e^{+\frac{1}{2}(\textcolor{red}{\theta_i}+\textcolor{blue}{b_c})}}{e^{+\frac{1}{2}(\textcolor{red}{\theta_i}+\textcolor{blue}{b_c})}+e^{-\frac{1}{2}(\textcolor{red}{\theta_i}+\textcolor{blue}{b_c})}}
+    \end{equation*}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+    \vspace{-0.75em}
+    \begin{tikzpicture}
+    \begin{axis}[
+            xmin=-2, xmax=+2, % x scale
+            ymin=0, ymax=1, % y scale
+            domain=-2:2,  % added, key improvements
+            scale only axis=true,
+            width=0.85\textwidth,
+            height=0.45\textwidth,
+            clip=false
+            % enlarge x limits=false,
+            % enlarge y limits=false
+    ]
+    \addplot[smooth, black]    {exp(x)/(exp(x)+exp(-x))};
+    \draw[->,color=DarkPurple, line width=0.5mm] (0,0) -- (0.9,0) node[midway, above, color=DarkPurple] {$\bm{\theta}$};
+    \draw[->,color=Kaki, line width=0.5mm] (0.9,0) -- (1.3,0)  node[midway, above, color=Kaki] {$\bm{b}$};
+    \draw[dashed] (1.3,0) -- (1.3,0.93);
+    \draw[dashed] (-2,0.93) -- (1.3,0.93);
+    \end{axis}
+    \end{tikzpicture}
+    \end{column}
+\end{columns}
+
+\begin{itemize}
+    \item<2-> $\theta(i)=\pm \mu$ is a latent (unobserved) parameter measuring the preference of each author $i$. $\theta(i)>0$ indicates a preference for the mostly plus signature
+    \item<3-> $b_c$ is the unobserved bias associated with research area $c$
+    \item<4-> If $|\theta|\gg |b|$, individual preferences dominate the need to adapt to a given research area
+    \item<5-> ``Item-response model'': recover invisible traits/factors that may account for observed behaviors.
+    \item<6-> \textbf{Given physicists' choices in their solo-authored papers, we can infer back $\theta$ and $b$ using Bayesian inference}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Sequential and contextual consistency}
+\vspace{-1em}
+\begin{figure}
+\centering
+\includegraphics[width=0.5\linewidth]{consistency_vs_task_simple.pdf}
+    \vspace{-0.75em}
+    \caption{Sequential consistency (preferences) matter the most, but adaptation to the context also occurs.}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Sequential and contextual consistency}
 \begin{figure}
 \centering
 \includegraphics[width=0.5\linewidth]{preferences.pdf}
@@ -431,75 +478,42 @@ Individuals' attitude towards a convention may be shaped by:
 \end{figure}
 \end{frame}
 
-\begin{frame}{Inconsistency and maladaptation costs}
-\vspace{-1em}
-\def\alice{\tikz[baseline=-.2ex]{
-\node[alice] at (0,0) {};}
-}
-
-\begin{itemize}
-    \item \alice publishes $d$ in category $c_d \in \{\text{phenomenology, theory, \dots}\}$. What is the probability that they use the mostly plus convention?
-\end{itemize}
-
-\begin{equation}
-    \small P(\sigma_d=+1|a_d=\alice,c_d) = f(\textcolor{red}{\underbrace{\theta(\alice)}_{\substack{\text{Author's}\\\text{preference}}}}+\textcolor{blue}{\underbrace{b(c_d)}_{\substack{\text{Effect of}\\\text{research area } c_d}}})% = \frac{e^{+\frac{1}{2}(\textcolor{red}{\theta_i}+\textcolor{blue}{b_c})}}{e^{+\frac{1}{2}(\textcolor{red}{\theta_i}+\textcolor{blue}{b_c})}+e^{-\frac{1}{2}(\textcolor{red}{\theta_i}+\textcolor{blue}{b_c})}}
-\end{equation}
-
-\begin{itemize}
-    \item<2-> ``Item-response model'': recover invisible traits/factors that may account for observed behaviors.
-    \item<3-> $\theta(i)$ is a latent (unobserved) parameter measuring the preference of each author $i$. $\theta(i)>0$ indicates a preference for the mostly plus signature
-    \item<4-> $b_c$ is the unobserved bias associated with research area $c$
-    \item<5-> If $|\theta|\gg |b|$ then individual preferences dominate the need to adapt to a given research area
-    \item<6-> \textbf{Given physicists' choices in their solo-authored papers, we can infer back $\theta$ and $b$ using Bayesian inference}.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Inconsistency and maladaptation costs}
-\vspace{-1em}
-\begin{figure}
-\centering
-\includegraphics[width=0.5\linewidth]{consistency_vs_task_barplot.pdf}
-    \vspace{-0.75em}
-    \caption{Consistency matters the most, but adaptation to the context can occur.}
-\end{figure}
-\end{frame}
-
-
-
 \subsection{How do scientists resolve conflicting preferences in collaborations?}
 
-\begin{frame}{Decision optimality and decision costs in the resolution of conflicts}
-    \begin{itemize}
-        \item In scientific collaborations, the resolution of disagreement involves two factors:
-        \item[1] The ``optimality'' of the decision (i.e., truth-value -- if relevant --, collective satisfaction, appropriateness of the solution etc.).
-        \item[2] The cost of reaching an ``optimal'' decision.
-        \item Leadership is a tool for reducing ``transaction'' and decision costs in organizations \citep{calvert1992leadership}. Does it play a similar role in the case of the metric signature?
-    \end{itemize}
-\end{frame}
+% \begin{frame}{Decision optimality and decision costs in the resolution of conflicts}
+%     \begin{itemize}
+%         \item In scientific collaborations, the resolution of disagreement involves two factors:
+%         \item[1] The ``optimality'' of the decision (i.e., truth-value -- if relevant --, collective satisfaction, appropriateness of the solution etc.).
+%         \item[2] The cost of reaching an ``optimal'' decision.
+%         \item Leadership is a tool for reducing ``transaction'' and decision costs in organizations \citep{calvert1992leadership}. Does it play a similar role in the case of the metric signature?
+%     \end{itemize}
+% \end{frame}
 
 \begin{frame}{Inferring preference-aggregation mechanisms in conflicts}
+How scientists resolve conflicting preferences in collaborations?
+
     \begin{itemize}
-        \item<1-> Focusing on co-authored papers for which:
+        \item<2-> Focusing on co-authored papers for which:
         \begin{enumerate}
-            \item<2->[(i)] The metric signature $S_d\in\{-1,+1\}$ of the paper is observed
-            \item<3->[(ii)] The preference of each author $(\sigma_1, \dots, \sigma_n)\in \{\pm 1\}^n$ is known independently from at least one solo-authored publication
+            \item<3->[(i)] The metric signature $S_d\in\{-1,+1\}$ of the paper is observed
+            \item<4->[(ii)] The preference of each author $(\sigma_1, \dots, \sigma_n)\in \{\pm 1\}^n$ is known independently from at least one solo-authored publication
             % \item[(iii)] At least two co-authors have conflicting preferences ($\exists i,j | \sigma_i \neq \sigma_j$).
         \end{enumerate}
-        \item<4-> We can assume different preference aggregation strategies ($A_k$):
+        \item<5-> We can assume different preference aggregation strategies ($A_k$):
         \begin{itemize}
-            \item<5-> Dictatorial strategies (the first author, the last author, or another author decides)
-            \item<6-> Majoritarian strategy (the majority preference prevails)
-            \item<7-> Conventional strategy (the signature most common in the target research area prevails)
-            \item<8-> Random/coin-flip (both individual preferences and context are ignored)
+            \item<6-> Dictatorial strategies (the first author, the last author, or another author decides)
+            \item<7-> Majoritarian strategy (the majority preference prevails)
+            \item<8-> Conventional strategy (the signature most common in the target research area prevails)
+            \item<9-> Random/coin-flip (both individual preferences and context are ignored)
         \end{itemize}
-        \item<9-> We can estimate the prevalence of each strategy ($\pi_k$) given that they predict different outcomes (different probabilities  $P(S_d|\sigma_1,\dots,\sigma_n,A_k)$)
+        \item<10-> We can estimate the prevalence of each strategy ($\pi_k$) given that they predict different outcomes (different probabilities  $P(S_d|\sigma_1,\dots,\sigma_n,A_k)$)
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Inferring preference-aggregation mechanisms}
     Each paper brings a bit more information about $\pi_k$, the prevalence of an aggregation strategy $A_k$.
         
-    \foreach \x in {0,...,59} {
+    \foreach \x in {0,...,45} {
         \newcommand\frameno{\x+1}
         \only<\x>{
             \centering
@@ -521,16 +535,27 @@ Individuals' attitude towards a convention may be shaped by:
 
 \subsection{How do physicists' preferences get formed?}
 
-\begin{frame}{Authors' preferences ($n=2\,277$)}
-    \vspace{-0.75em}
-    \begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.6\textwidth,trim=250 350 225 350,clip]{authors_network.pdf}
-    
-    \caption{\textbf{Metric signature preferences in the co-author network}. Each node is an author. Edges represent co-authorship relationships between authors. Pink authors have a preference for the mostly minus metric signature, and green authors for the mostly plus metric signature. Only the largest connected component is shown. %Spatialization was performed with ForceAtlas2 \citep{Jacomy2014}.
-    }
-    \label{fig:co-author-network}
-\end{figure}
+\begin{frame}{Authors' preferences}
+\begin{columns}
+    \begin{column}{0.65\textwidth}
+        \vspace{-1em}
+        \begin{figure}[!h]
+        \centering\includegraphics[width=0.9\textwidth,trim=250 350 225 350,clip]{authors_network.pdf}
+        \end{figure}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+        \centering
+        Observed outcome: the preference of each author,
+
+        \vspace{1em}
+        
+        $O=(\sigma_1,\dots,\sigma_n), \sigma \in \{\textcolor[HTML]{EE7993}{-1},\textcolor[HTML]{3FB17D}{+1}\}$
+
+        \vspace{1em}
+
+        ($n=2\,277$ authors)
+    \end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}{How do physicists' preferences get formed?}
@@ -547,24 +572,33 @@ Individuals' attitude towards a convention may be shaped by:
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Example: the strategic agent model}
-    The model has multiple unknown parameters:
+\begin{frame}{Example: the strategic agent model ($M_1$)}
+    The model $M_1$ has multiple unknown parameters:
     \begin{itemize}
         \item $c_s$: the cost of switching from one convention to another
         \item $c_c$: the cost of disagreeing with co-authors
         \item $c_{r}$ the cost of using a suboptimal convention in a given research area
     \end{itemize}
 
-    \foreach \x in {0,...,4} {
-        \newcommand\frameno{\x+1}
-        \only<\x>{
-            \centering
-            \begin{figure}
-                \centering
-                \includegraphics[width=0.6\linewidth]{strategic/step_J_\x.pdf}
-            \end{figure}
-        }
-    }
+    \vspace{0.5em}
+
+    The \textbf{outcome} $O$ is the joint value of each author's preference: $O=(\sigma_1,\dots,\sigma_n)$ where $\sigma_i = \pm 1$
+
+    % \foreach \x in {0} {
+    %     \newcommand\frameno{\x+1}
+    %     \only<\x>{
+    %         \centering
+    %         \begin{figure}
+    %             \centering
+    %             \includegraphics[width=0.55\linewidth]{strategic/step_J_\x.pdf}
+    %         \end{figure}
+    %     }
+    % }
+    \uncover<2->{
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\linewidth]{strategic/step_J_2.pdf}
+    \end{figure}}
 \end{frame}
 
 
@@ -572,46 +606,149 @@ Individuals' attitude towards a convention may be shaped by:
 \vspace{-0.5em}
 
     \begin{equation}
-        \textcolor{red}{P(M_1|O)} = \dfrac{\textcolor{blue}{\overbrace{P(O|M_1)}^{\uncover<2->{\substack{\text{Unknown}\\\text{in ABMs!}}}}}P(M_1)}{P(O)}
+        \textcolor{red}{P(M_1|O)} = \textcolor{blue}{\overbrace{P(O|M_1)}^{\uncover<2->{\substack{\text{Unknown}\\\text{in ABMs!}}}}}\dfrac{P(M_1)}{P(O)}
     \end{equation}
 
-    % \uncover<2->{
-    % Assuming that at least one model is correct:
-    % \begin{equation}
-    %     P(O) = \displaystyle\sum_{i=1}^3 \textcolor{blue}{P(O|M_i)} P(M_i)
-    % \end{equation}
-    % }
+\begin{tikzpicture}
 
-    \uncover<3->{
-    Let us draw $N$ configurations $O_s$, each of them assuming a model $M_s\in\{1,2,3\}$. Then, $\textcolor{blue}{P(O|M_1)}$ is approximated by the fraction of draws from model $M_1$ that match the data:
+% Draw the circle
+\draw[visible on=<3->] (0,0) ++(180:2) arc (180:-180:2);
 
-    \vspace{-0.5em}
+\begin{scope}
+    \clip (-2,-2) rectangle (0,2);
+    \draw[fill=purple!20,visible on=<3->] (0,0) ++(180:2) arc (180:-180:2);
+\end{scope}
 
-    \begin{equation}
-        \textcolor{blue}{P(O|M_1)} = \lim_{N\to\infty} \dfrac{\sum_{s=1}^N \mathbbm{1}(O_s=O,M_s=1)}{\sum_{s=1}^N \mathbbm{1}(M_s=1)}
-    \end{equation}
-    }
+\begin{scope}
+    \clip (0,-2) rectangle (2,2);
+    \draw[fill=yellow!20,visible on=<3->] (0,0) ++(180:2) arc (180:-180:2);
+\end{scope}
 
-    \vspace{-0.5em}
-    \uncover<4->{
-    \begin{equation}
-        \textcolor{red}{P(M_1|O)} = \dfrac{\textcolor{blue}{P(O|M_1)}P(M_1)}{P(O)}\uncover<5->{= \lim_{N\to\infty} \dfrac{\sum_{s=1}^N \mathbbm{1}(O_s=O,M_s=1)}{\sum_{s=1}^N \mathbbm{1}(O_s=O)}} 
-    \end{equation}
-    }
+% Divide the circle into two halves
+\draw[thick,visible on=<3->] (0,-2) -- (0,2);
+
+% Label the two regions
+\node[visible on=<3->] at (-1,-1) {$M_1$};
+\node[visible on=<3->] at (1,-1) {$M_2$};
+
+% Add the shaded region for O (rotate for more overlap with M1)
+\fill[rotate=110,draw=green,thick,fill=none,visible on=<4->] plot[smooth] coordinates {
+      (60:2)
+      (50:0.8)
+      (-20:1.2)
+      (-60:2)
+    } arc[radius=2,start angle=-60,end angle=60];
+
+\begin{scope}
+    \clip (-2,-2) rectangle (0,2);
+    \fill[pattern=north east lines, pattern color=green,rotate=110,draw=green,thick,visible on=<4->] plot[smooth] coordinates {
+          (60:2)
+          (50:0.8)
+          (-20:1.2)
+          (-60:2)
+        } arc[radius=2,start angle=-60,end angle=60];
+\end{scope}
+
+\begin{scope}
+    \clip (0,-2) rectangle (2,2);
+    \fill[pattern=north east lines, pattern color=green,rotate=110,draw=green,thick,visible on=<4->] plot[smooth] coordinates {
+          (60:2)
+          (50:0.8)
+          (-20:1.2)
+          (-60:2)
+        } arc[radius=2,start angle=-60,end angle=60];
+\end{scope}
+
+
+
+\node[color=green!50!black,visible on=<4->] at (-0.75, 1.1) {$O$};
+
+% Draw the formula for P(O|M1)
+\node[anchor=west,visible on=<5->] at (2.5,1.5) {
+    $\textcolor{blue}{P(O|M_1)} = \frac{\begin{tikzpicture}[baseline=2pt]
+        \draw[thick,fill=purple!20] (0,0) rectangle (0.6,0.6);
+        \fill[pattern=north east lines, pattern color=green] (0,0) rectangle (0.6,0.6);
+    \end{tikzpicture}}{
+    \begin{tikzpicture}[baseline=2pt]
+        \draw[thick,fill=purple!20] (0,0) rectangle (0.6,0.6);
+    \end{tikzpicture}} = \dfrac{|O\cap M_1|}{|M_1|}$};
+
+\node[anchor=west,visible on=<6->] at (2.5,0) {
+    $\textcolor{blue}{P(O|M_2)} = \frac{\begin{tikzpicture}[baseline=2pt]
+        \draw[thick,fill=yellow!20] (0,0) rectangle (0.6,0.6);
+        \fill[pattern=north east lines, pattern color=green] (0,0) rectangle (0.6,0.6);
+    \end{tikzpicture}}{
+    \begin{tikzpicture}[baseline=2pt]
+        \draw[thick,fill=yellow!20] (0,0) rectangle (0.6,0.6);
+    \end{tikzpicture}}$};
+
+\node[anchor=west,visible on=<7->] at (2.5,-1.5) {
+    $\textcolor{red}{P(M_1|O)} = \textcolor{blue}{P(O|M_1)}\dfrac{P(M_1)}{P(O)} = \frac{\begin{tikzpicture}[baseline=2pt]
+        \draw[thick,fill=purple!20] (0,0) rectangle (0.6,0.6);
+        \fill[pattern=north east lines, pattern color=green] (0,0) rectangle (0.6,0.6);
+    \end{tikzpicture}}{
+    \begin{tikzpicture}[baseline=2pt]
+        \draw[thick,fill=purple!20] (0,0) rectangle (0.6,0.6);
+    \end{tikzpicture}} \frac{\begin{tikzpicture}[baseline=2pt]
+        \draw[thick,fill=purple!20] (0,0) rectangle (0.6,0.6);
+    \end{tikzpicture}}{
+    \begin{tikzpicture}[baseline=2pt]
+        \draw[thick] (0,0) rectangle (0.6,0.6);
+        \fill[pattern=north east lines, pattern color=green] (0,0) rectangle (0.6,0.6);
+    \end{tikzpicture}} = \frac{\begin{tikzpicture}[baseline=2pt]
+        \draw[thick,fill=purple!20] (0,0) rectangle (0.6,0.6);
+        \fill[pattern=north east lines, pattern color=green] (0,0) rectangle (0.6,0.6);
+    \end{tikzpicture}}{
+    \begin{tikzpicture}[baseline=2pt]
+        \draw[thick] (0,0) rectangle (0.6,0.6);
+        \fill[pattern=north east lines, pattern color=green] (0,0) rectangle (0.6,0.6);
+    \end{tikzpicture}}$};
+
+\node[anchor=west,visible on=<8->] at (2.5,-3) {
+    $\textcolor{red}{P(M_2|O)} = \textcolor{blue}{P(O|M_2)}\dfrac{P(M_2)}{P(O)} = \frac{\begin{tikzpicture}[baseline=2pt]
+        \draw[thick,fill=yellow!20] (0,0) rectangle (0.6,0.6);
+        \fill[pattern=north east lines, pattern color=green] (0,0) rectangle (0.6,0.6);
+    \end{tikzpicture}}{
+    \begin{tikzpicture}[baseline=2pt]
+        \draw[thick,fill=yellow!20] (0,0) rectangle (0.6,0.6);
+    \end{tikzpicture}} \frac{\begin{tikzpicture}[baseline=2pt]
+        \draw[thick,fill=yellow!20] (0,0) rectangle (0.6,0.6);
+    \end{tikzpicture}}{
+    \begin{tikzpicture}[baseline=2pt]
+        \draw[thick] (0,0) rectangle (0.6,0.6);
+        \fill[pattern=north east lines, pattern color=green] (0,0) rectangle (0.6,0.6);
+    \end{tikzpicture}} = \frac{\begin{tikzpicture}[baseline=2pt]
+        \draw[thick,fill=yellow!20] (0,0) rectangle (0.6,0.6);
+        \fill[pattern=north east lines, pattern color=green] (0,0) rectangle (0.6,0.6);
+    \end{tikzpicture}}{
+    \begin{tikzpicture}[baseline=2pt]
+        \draw[thick] (0,0) rectangle (0.6,0.6);
+        \fill[pattern=north east lines, pattern color=green] (0,0) rectangle (0.6,0.6);
+    \end{tikzpicture}}$};
+
+\foreach \x/\y in {-1.5/1.2, -1.2/0.8, -0.8/-1.5, -1.3/-0.5, -0.7/0.5} {
+    \draw[fill=purple,draw=none,visible on=<9->] (\x,\y) circle (0.5mm);
+}
+
+% Add random nodes within M2 (in yellow)
+\foreach \x/\y in {0.5/1.2, 1.2/0.8, 0.8/1.5, 1.3/-0.5, 0.7/0.5} {
+    \draw[fill=yellow!20!orange,draw=none,visible on=<10->] (\x,\y) circle (0.5mm);
+}
+\end{tikzpicture}
 \end{frame}
 
 \begin{frame}{Curse of dimensionality in simulation-based inference}
     \begin{itemize}
-        \item<1-> This approach requires that at least some draws $O_s$ match the observed outcome $O$. These draws must match exactly each and everyone's of the 2\,277 authors' preferences!
-        \item<2-> The probability for this to happen is virtually 0 (if a model has a probability $p=0.95$ to predict the correct preference for any author independently, the joint probability would be $2\times 10^{-51}$)
-        \item<3-> It would take an absurd amount of time so that at least one simulation matches the observed outcome (many times the age of the universe, even with millions of draws per second)
-        \item<4-> This is because because the data has \textit{too many dimensions} $\Rightarrow$ \textbf{``curse of dimensionality''}
-        \item<5-> The solution: ``conditioning'' on \textbf{summary statistics} rather than the entire data.
-        \item<6-> Summary statistics are \textbf{low-dimensional descriptions of the data} that capture their essential features. e.g.:
+        \item<1-> This requires that at least some simulations $O_s$ match the observed outcome $O$, which means matching each of the 2\,277 authors' preferences at the same time!
+        \item<2-> Virtually impossible ($95\%$ chance of predicting any individual preference $\sigma_i$ correctly $\Rightarrow$ $2\times 10^{-51}$ of getting all of them right at once)
+        \item<3-> This is because because the data has \textit{too many dimensions} $\Rightarrow$ \textbf{``curse of dimensionality''}
+        \item<4-> Solution: ``conditioning'' on \textbf{summary statistics} rather than the entire data.
+        \item<5-> Summary statistics are \textbf{low-dimensional descriptions of the data} that capture essential features. e.g.:
         \begin{equation}
-            m = \frac{1}{n}|\sum_{i=1}^n \sigma_i|
+            m = \frac{1}{n}|\sum_{i=1}^n \sigma_i| \text{ (where } \sigma_i=\pm 1 \text{)}
         \end{equation}
     \end{itemize}
+    \uncover<6->{\input{summary}}
 \end{frame}
 
 \begin{frame}{Summary statistics in simulation-based inference}
@@ -778,21 +915,26 @@ Inverse Ising problem: $P(J,J^\text{cit},\bm{B}|\{\sigma_i\})$
 \centering
 \caption{Parameters of the Ising model.}
 \label{table:ising}
-\resizebox{\textwidth}{!}{
-\begin{tabular}{lcccc}
-\toprule
- & Effect size & CI$_{\text{95\%}}$ & Effect size & CI$_{\text{95\%}}$ \\
-Parameter &  &  &  &  \\
-\midrule
-$J$ & +0.013 & [+0.009, \ +0.017] & +0.0095 & [+0.0052, \ +0.014] \\
-$J^{\mathrm{cit}}$ & - & - & +0.00049 & [+0.00023, \ +0.00075] \\
-$B(\mathrm{hep-ph})$ & -0.86 & [-0.99, \ -0.73] & -0.77 & [-0.91, \ -0.64] \\
-$B(\mathrm{hep-th})$ & -0.22 & [-0.29, \ -0.15] & -0.17 & [-0.24, \ -0.095] \\
-$B(\mathrm{gr-qc})$ & +0.075 & [-0.0069, \ +0.16] & +0.076 & [-0.0066, \ +0.16] \\
-$B(\mathrm{astro})$ & -0.6 & [-0.74, \ -0.47] & -0.59 & [-0.73, \ -0.46] \\
-\bottomrule
-\end{tabular}
-}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{fit.pdf}
+    \caption{Ising model fit}
+\end{figure}
+% \resizebox{\textwidth}{!}{
+% \begin{tabular}{lcccc}
+% \toprule
+%  & Effect size & CI$_{\text{95\%}}$ & Effect size & CI$_{\text{95\%}}$ \\
+% Parameter &  &  &  &  \\
+% \midrule
+% $J$ & +0.013 & [+0.009, \ +0.017] & +0.0095 & [+0.0052, \ +0.014] \\
+% $J^{\mathrm{cit}}$ & - & - & +0.00049 & [+0.00023, \ +0.00075] \\
+% $B(\mathrm{hep-ph})$ & -0.86 & [-0.99, \ -0.73] & -0.77 & [-0.91, \ -0.64] \\
+% $B(\mathrm{hep-th})$ & -0.22 & [-0.29, \ -0.15] & -0.17 & [-0.24, \ -0.095] \\
+% $B(\mathrm{gr-qc})$ & +0.075 & [-0.0069, \ +0.16] & +0.076 & [-0.0066, \ +0.16] \\
+% $B(\mathrm{astro})$ & -0.6 & [-0.74, \ -0.47] & -0.59 & [-0.73, \ -0.46] \\
+% \bottomrule
+% \end{tabular}
+% }
 \end{table}
 \end{frame}
 
@@ -825,6 +967,24 @@ $B(\mathrm{astro})$ & -0.6 & [-0.74, \ -0.47] & -0.59 & [-0.73, \ -0.46] \\
 \begin{frame}{Thank you!}
     \nocite{radev2021amortized}
     \printbibliography[heading=none]
+\end{frame}
+
+\begin{frame}{Inverse problems in practice}
+\begin{enumerate}
+    \item What \textbf{phenomenon}? (Belief-polarization? Discrimination and marginalization? etc.)
+    \item What \textbf{model\underline{s}}? 
+    \item What \textbf{data}?
+    \begin{itemize}
+        \item Accessibility (reasonable time/financial cost)
+        \item Quality (absence of bias)
+        \item Quantity (statistical significance)
+    \end{itemize}
+    \item What \textbf{computational methods}?
+    \begin{itemize}
+        \item Pre-processing: text-classification? (Natural language processing)
+        \item Inference: simulation-based inference (with, or without neural networks)? Hamiltonian Monte-Carlo? Metropolis?
+    \end{itemize}
+\end{enumerate}
 \end{frame}
 
 \begin{frame}{Amortized simulation-based inference}
