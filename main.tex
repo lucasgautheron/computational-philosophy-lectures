@@ -88,6 +88,7 @@ Inverse Problems for Philosophers
 {
   %
   Interdisciplinary Center for Science and Technology Studies, Wuppertal\\
+  ~\\
   École Normale Supérieure, Paris
 }
 
@@ -109,7 +110,7 @@ Inverse Problems for Philosophers
   \begin{tikzpicture}[remember picture,overlay]
     \node[above right,inner sep=0pt,opacity=0.85] at (current page.south west)
     {
-    \includegraphics[width=1\paperwidth]{snow.jpg}
+    \includegraphics[width=1.1\paperwidth]{snow.jpg}
     };
   \end{tikzpicture}
 }{}
@@ -207,7 +208,7 @@ Reasons are:
 
 \begin{frame}{Bayesian inference for inverse problems}
     \begin{itemize}
-        \item Both forward models and inverse problems have a stochastic/probabilistic component (random initialization, partially random decisions, uncertainty quantification\dots)
+        \item Both forward models and inverse problems have a stochastic/probabilistic component (\textcolor{blue}{random initialization, partially random decisions}; \textcolor{red}{uncertainty quantification}\dots)
         \item We appeal to \textbf{probabilities} and \textbf{Bayesian inference}.
     \end{itemize}
 
@@ -433,7 +434,7 @@ Individuals' attitude towards a convention may be shaped by:
 \begin{columns}
     \begin{column}{0.67\textwidth}
     \begin{equation*}
-    \small P(\sigma_d=+1|\bm{\theta}(\alice),b(c_d)) = f(\textcolor{DarkPurple}{\underbrace{\bm{\theta}(\alice)}_{\substack{\text{Author's}\\\text{preference}}}}+\textcolor{Kaki}{\underbrace{b(c_d)}_{\substack{\text{Effect of}\\\text{research area}}}})% = \frac{e^{+\frac{1}{2}(\textcolor{red}{\theta_i}+\textcolor{blue}{b_c})}}{e^{+\frac{1}{2}(\textcolor{red}{\theta_i}+\textcolor{blue}{b_c})}+e^{-\frac{1}{2}(\textcolor{red}{\theta_i}+\textcolor{blue}{b_c})}}
+    \small P(\sigma_d=+1|\textcolor{DarkPurple}{\theta(\alice)},\textcolor{Kaki}{b(c_d)}) = f(\textcolor{DarkPurple}{\underbrace{\bm{\theta}(\alice)}_{\substack{\text{Author's}\\\text{preference}}}}+\textcolor{Kaki}{\underbrace{b(c_d)}_{\substack{\text{Effect of}\\\text{research area}}}})% = \frac{e^{+\frac{1}{2}(\textcolor{red}{\theta_i}+\textcolor{blue}{b_c})}}{e^{+\frac{1}{2}(\textcolor{red}{\theta_i}+\textcolor{blue}{b_c})}+e^{-\frac{1}{2}(\textcolor{red}{\theta_i}+\textcolor{blue}{b_c})}}
     \end{equation*}
     \end{column}
     \begin{column}{0.33\textwidth}
