@@ -975,27 +975,29 @@ Inverse Ising problem: $P(J,J^\text{cit},\bm{B}|\{\sigma_i\})$
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Thank you!}[allowframebreaks]
-    \nocite{Cranmer2020,radev2021amortized}
-    \printbibliography[heading=none]
-\end{frame}
 
-\begin{frame}{Inverse problems in practice}
+\begin{frame}{Summary: inverse problems in practice}
 \begin{enumerate}
     \item What \textbf{phenomenon}? (Belief-polarization? Discrimination and marginalization? etc.)
-    \item What \textbf{model\underline{s}}? 
+    \item What \textbf{model\underline{s}}? (``model-space'')
     \item What \textbf{data}?
     \begin{itemize}
         \item Accessibility (reasonable time/financial cost)
-        \item Quality (absence of bias)
+        \item Quality (bias? ecological validity?)
         \item Quantity (statistical significance)
     \end{itemize}
-    \item What \textbf{computational methods}?
+    \item What \textbf{computational strategies}?
     \begin{itemize}
-        \item Pre-processing: text-classification? (Natural language processing)
-        \item Inference: simulation-based inference (with, or without neural networks)? Hamiltonian Monte-Carlo? Metropolis?
+        \item \textbf{Pre-processing}: text-classification? (Natural language processing)
+        \item \textbf{Inference} (inverse problem): simulation-based inference (with/without neural networks); Hamiltonian Monte-Carlo? Metropolis?
     \end{itemize}
 \end{enumerate}
+\end{frame}
+
+
+\begin{frame}{Thank you!}[allowframebreaks]
+    \nocite{Cranmer2020,radev2021amortized}
+    \printbibliography[heading=none]
 \end{frame}
 
 \begin{frame}{Amortized simulation-based inference}
