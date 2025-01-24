@@ -418,7 +418,7 @@ Individuals' attitude towards a convention may be shaped by:
         \resizebox{0.95\textwidth}{!}{\input{tradeoffs}}
     \end{figure}
 
-    \uncover<5->{$\Rightarrow$ Are these involved in the context of the metric signature? }
+    \uncover<2->{$\Rightarrow$ Are these involved in the context of the metric signature? }
 \end{frame}
 
 \begin{frame}{Individual and contextual consistency}
@@ -462,9 +462,9 @@ Individuals' attitude towards a convention may be shaped by:
 \end{columns}
 
 \begin{itemize}
-    \item<2-> $\theta(i)=\pm \mu$ is a latent (unobserved) parameter measuring the preference of each author $i$. $\theta(i)>0$ indicates a preference for the mostly plus signature
-    \item<3-> $b_c$ is the unobserved bias associated with research area $c$
-    \item<4-> If $|\theta|\gg |b|$, individual preferences dominate the need to adapt to a given research area
+    \item<2-> $\textcolor{DarkPurple}{\theta(i)}=\pm \mu$ is a latent (unobserved) parameter measuring the preference of each author $i$. $\textcolor{DarkPurple}{\theta(i)}>0$ indicates a preference for the mostly plus signature
+    \item<3-> $\textcolor{Kaki}{b_c}$ is the unobserved bias associated with research area $c$
+    \item<4-> If $|\textcolor{DarkPurple}{\theta}|\gg |\textcolor{Kaki}{b}|$, individual preferences dominate the need to adapt to a given research area
     \item<5-> ``Item-response model'': recover invisible traits/factors that may account for observed behaviors.
     \item<6-> \textbf{Given physicists' choices in their solo-authored papers, we can infer back $\theta$ and $b$ using Bayesian inference}.
 \end{itemize}
@@ -753,7 +753,7 @@ How scientists resolve conflicting preferences in collaborations?
         \item<2-> Virtually impossible ($95\%$ chance of predicting any individual preference $\sigma_i$ correctly $\Rightarrow$ $2\times 10^{-51}$ of getting all of them right at once)
         \item<3-> The data has \textit{too many dimensions} $\Rightarrow$ \textbf{``curse of dimensionality''}
         \item<4-> Solution: ``conditioning'' on \textbf{summary statistics} rather than the entire data.
-        \item<5-> Summary statistics are \textbf{low-dimensional descriptions of the data} that capture essential features. e.g.:
+        \item<5-> Summary statistics are \textbf{concise descriptions of the data} that capture essential features. e.g.:
         \begin{equation}
             m = \frac{1}{n}|\sum_{i=1}^n \sigma_i| \text{ (where } \sigma_i=\pm 1 \text{)}
         \end{equation}
